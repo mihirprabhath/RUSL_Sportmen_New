@@ -12,6 +12,7 @@ use App\Livewire\Teams;
 use App\Livewire\Location;
 use App\Livewire\Achievements;
 use App\Livewire\UserManagement;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,9 +45,14 @@ Route::get('/comment-section', CommentSection::class)->name('comment-section');
 Route::get('/teams', Teams::class)->name('teams');
 Route::get('/location', Location::class)->name('location');
 Route::get('/achievements', Achievements::class)->name('achievements');
-Route::get('/user-management', UserManagement::class)->name('usermanagement');
+Route::get('/user-management',UserManagement::class)->name('user-management');
+
+ 
 
 
+Route::post('/adduser', [UserController::class, 'store'])->name('adduser.store');
+
+ 
 
 
 Route::get('/ground-availability', function () {

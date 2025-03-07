@@ -132,7 +132,7 @@
 
 
                     <!-- user Management -->
-                    <p> <button class="dashboard-item" onclick="window.location.href='{{ route('usermanagement') }}'">
+                    <p> <button class="dashboard-item" onclick="window.location.href='{{ route('user-management') }}'">
                             <i class="icon fa fa-user"></i> <b class="color-black">Users</b>
                         </button></p>
 
