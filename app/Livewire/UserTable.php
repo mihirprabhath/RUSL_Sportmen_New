@@ -2,19 +2,20 @@
 
 namespace App\Livewire;
 
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Column;
+ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Button;
+
 
 final class UserTable extends PowerGridComponent
 {
-    public string $tableName = 'user-table-epv9bq-table';
+    public string $tableName = 'user-table';
 
     public function setUp(): array
     {
@@ -23,7 +24,7 @@ final class UserTable extends PowerGridComponent
         return [
             PowerGrid::header()
                 ->showSearchInput(),
-            PowerGrid::footer()
+             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -31,7 +32,7 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return user::query();
+        return User::query();
     }
 
     public function relationSearch(): array
@@ -45,7 +46,10 @@ final class UserTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('email')
-            ->add('created_at');
+            ->add('user_type')
+            ->add('created_at_formatted', function (User $model) {
+                return Carbon::parse($model->created_at)->format('d/m/Y H:i');
+            });
     }
 
     public function columns(): array
@@ -60,29 +64,30 @@ final class UserTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+                
+            Column::make('user_type', 'user_type')
+            ->sortable()
+            ->searchable(),
+
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
     public function filters(): array
     {
         return [
-        ];
-    }
+            Filter::inputText('name')
+                 ->placeholder('Search by Name'),
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert('.$rowId.')');
-    }
+            Filter::inputText('email')
+                 ->placeholder('Search by Email'),
 
+            Filter::datepicker('created_at')
+         ];
+    }
     public function actions(user $row): array
     {
         return [
@@ -94,15 +99,5 @@ final class UserTable extends PowerGridComponent
         ];
     }
 
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
+     
 }

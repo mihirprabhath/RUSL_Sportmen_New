@@ -3,10 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use LivewireUI\Modal\ModalComponent;
 use App\Models\SpecialGB;
 
-class ModalBooking extends ModalComponent
+class ModalBooking extends Component
 {
     public $booker_name;
     public $contact_number;
@@ -36,14 +35,11 @@ class ModalBooking extends ModalComponent
         ]);
 
         session()->flash('success', 'Booking has been successfully created.');
-        $this->dispatch('closeModal'); // Close the modal
-        return redirect()->back();
-   
+        $this->dispatchBrowserEvent('close-modal'); // Close the modal
     }
 
     public function render()
     {
         return view('livewire.modal-booking');
     }
-
 }

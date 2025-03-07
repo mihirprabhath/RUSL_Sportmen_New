@@ -19,7 +19,7 @@ class AddTeam extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'image' => 'required|image|max:2048', // Validate image upload
+            'image' => 'required|image', 
             'captain' => 'required|string|max:255',
             'description' => 'required|string',
         ]);

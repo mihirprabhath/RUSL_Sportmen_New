@@ -93,7 +93,12 @@ final class RegistrationTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-        ];
+            Filter::inputText('sport')
+                 ->placeholder('Search by Sport'),
+
+            
+            
+         ];
     }
 
     #[\Livewire\Attributes\On('edit')]

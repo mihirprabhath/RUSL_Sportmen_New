@@ -13,6 +13,9 @@ use App\Livewire\Location;
 use App\Livewire\Achievements;
 use App\Livewire\UserManagement;
 use App\Http\Controllers\UserController;
+use App\Livewire\ModalBooking;
+
+ 
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,12 +50,14 @@ Route::get('/location', Location::class)->name('location');
 Route::get('/achievements', Achievements::class)->name('achievements');
 Route::get('/user-management',UserManagement::class)->name('user-management');
 
+ Route::get('/modal-booking', ModalBooking::class)->name('modal-booking');
  
 
 
-Route::post('/adduser', [UserController::class, 'store'])->name('adduser.store');
 
- 
+
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+
 
 
 Route::get('/ground-availability', function () {

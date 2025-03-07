@@ -31,11 +31,13 @@ class CommentSection extends Component
             'comment' => $this->newComment,
         ]);
 
-        // Refresh the comments list
+        // Add the new comment to the top of the list
         $this->comments->prepend($comment);
 
         // Clear the input
-        $this->newComment = '';
+        $this->newComment = ''; // This will automatically clear the text box due to wire:model
+
+        // Optionally, you can add a flash message or success message
     }
 
     public function render()
@@ -44,3 +46,4 @@ class CommentSection extends Component
             ->layout('layouts.app');
     }
 }
+

@@ -507,17 +507,81 @@ body {
 </div>
  
 
-<div class="flex justify-end" style="
-    padding-top: 10px;">
+ 
+ 
+<div><br>
+<!-- Booking Modal -->
+<div id="bookingModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Place Your Booking</h2>
+        <form wire:submit.prevent="store" enctype="multipart/form-data">
+            <!-- Left Section: First Half of Input Fields -->
+            <div class="flex justify-between space-x-4">
+                <div class="w-1/2">
+                    <div class="mb-4">
+                        <label for="booker_name" class="block text-sm font-bold mb-2">Name of Booker:</label>
+                        <input type="text" id="booker_name" wire:model="booker_name" class="w-full border-green-300 rounded shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact_number" class="block text-sm font-bold mb-2">Contact Number:</label>
+                        <input type="text" id="contact_number" wire:model="contact_number" class="w-full border-green-300 rounded shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="date" class="block text-sm font-bold mb-2">Date:</label>
+                        <input type="date" id="date" wire:model="date" class="w-full border-green-300 rounded shadow-sm" required>
+                    </div>
+                </div>
+
+                <!-- Right Section: Second Half of Input Fields and Button -->
+                <div class="w-1/2">
+                    <div class="mb-4">
+                        <label for="time" class="block text-sm font-bold mb-2">Time:</label>
+                        <input type="time" id="time" wire:model="time" class="w-full border-green-300 rounded shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="place" class="block text-sm font-bold mb-2">Place:</label>
+                        <select id="place" wire:model="place" class="w-full border-green-300 rounded shadow-sm" required>
+                            <option value="" disabled selected>Select a place</option>
+                            <option value="Main Ground">Main Ground</option>
+                            <option value="Indoor Stadium">Indoor Stadium</option>
+                            <option value="Pool">Pool</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="sport" class="block text-sm font-bold mb-2">Sport:</label>
+                        <input type="text" id="sport" wire:model="sport" class="w-full border-green-300 rounded shadow-sm" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit and Cancel Buttons -->
+            <div class="flex justify-end">
+                <button type="button" onclick="closeBookingModal()" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-lg">Book Ground</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Button to Open Booking Modal -->
+<div class="flex justify-end" style="padding-top: 10px;">
     <button 
         class="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-orange-600 shadow-md transition duration-200" 
-        onclick="Livewire.dispatch('openModal', { component: 'modal-booking' })">
+        onclick="openBookingModal()">
         Place your Booking
     </button>
 </div>
- 
- 
 
+<!-- JavaScript to Handle Modal Open/Close -->
+<script>
+    function openBookingModal() {
+        document.getElementById('bookingModal').classList.remove('hidden');
+    }
+
+    function closeBookingModal() {
+        document.getElementById('bookingModal').classList.add('hidden');
+    }
+</script>
 @livewireScripts
 <script src="{{ asset('vendor/livewire-ui/modal.js') }}"></script>
   </body>

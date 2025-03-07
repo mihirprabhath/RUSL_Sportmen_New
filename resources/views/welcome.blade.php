@@ -22,7 +22,7 @@
         }
 
         .twelve h1:before {
-            background-color: #c50000;
+            background-color: #007bff;
             content: '';
             display: block;
             height: 3px;

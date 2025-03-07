@@ -118,6 +118,7 @@ return [
     */
 
     'exportable' => [
+        
         'default'      => 'openspout_v4',
         'openspout_v4' => [
             'xlsx' => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v4\ExportToXLS::class,
@@ -139,4 +140,11 @@ return [
     'auto_discover_models_paths' => [
         app_path('Models'),
     ],
+
+    'exportable' => [
+    'enabled' => true, // Ensure this is set to true
+    'type'    => 'xlsx', // Default export type
+    'fileName' => 'export',
+],
+
 ];

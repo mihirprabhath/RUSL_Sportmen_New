@@ -101,16 +101,19 @@
     </head>
     <!--  -->
 
-    <div class="py-12">
+    <div class="py-12" style="
+    padding-top: 2rem;
+">
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
-
+       
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            
 
                 <!-- <div class="p-6 text-gray-900">
                     
@@ -125,30 +128,34 @@
                 <div class="dashboard">
 
                     <!-- Athlete Registration -->
-                    <a href="#" class="dashboard-item" data-toggle="modal" data-target="#ModalCreate">
-                        <i class="icon fa fa-book"></i>
-                        <p>Athlete Registration</p>
-                    </a>
+                    <p> <button class="dashboard-item" href="#" data-toggle="modal" data-target="#ModalCreate">
+                            <i class="icon fa fa-book"></i> <b class="color-black">Registration</b>
+                        </button></p>
 
+                    
 
                     <!-- user Management -->
+                    @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
+
                     <p> <button class="dashboard-item" onclick="window.location.href='{{ route('user-management') }}'">
                             <i class="icon fa fa-user"></i> <b class="color-black">Users</b>
                         </button></p>
+                    @endif
 
                     <!-- Athlete  -->
-
+                    @if(auth()->user()->hasAnyRole(['super_admin', 'admin', 'sub_admin']))
                     <p> <button class="dashboard-item" onclick="window.location.href='{{ route('athlete') }}'">
                             <i class="icon fa fa-book"></i> <b class="color-black">Athlete</b>
                         </button></p>
-
+                    @endif
 
                     <!-- Ground Availability -->
-                    <a href="{{ route('ground.availability') }}" class="dashboard-item">
-                        <i class="icon fa fa-bookmark"></i>
-                        <p>Ground Availability</p>
-                    </a>
 
+                    <p> <button class="dashboard-item" onclick="window.location.href='{{ route('ground.availability') }}'">
+                            <i class="icon fa fa-book"></i> <b class="color-black">Ground Availability</b>
+                        </button></p>
+                        
+                     
                     <!-- Ground Booking -->
 
                     <p> <button class="dashboard-item" onclick="window.location.href='{{ route('booking') }}'">
@@ -179,18 +186,6 @@
                     </p>
 
 
-
-
-
-
-                    <a href="juice_gallery.php" class="dashboard-item">
-                        <i class="icon fa fa-image"></i>
-                        <p>Teams</p>
-                    </a>
-                    <a href="../user_navigation/navi.php" class="dashboard-item">
-                        <i class="icon fa fa-exclamation-triangle"></i>
-                        <p> Location</p>
-                    </a>
                 </div>
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -208,6 +203,8 @@
 
             </div>
         </div>
+   
+
     </div>
     </div>
     <!-- <script>
