@@ -11,9 +11,7 @@ The **Sportsmen App** is a web-based application designed to manage sports-relat
 - **Admin Dashboard**
 - **User & Role Management**
 - **Event & Tournament Management**
-- **Product & T-Shirt Sales Management**
-- **Magazine & News Updates**
-- **Voting System for Sports Awards**
+- **Location**
 - **E-mail Approval for New Users**
 
 ## Future Developments
