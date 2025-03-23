@@ -33,40 +33,10 @@ The **Sportsmen App** is a web-based application designed to manage sports-relat
 ### Prerequisites
 - PHP 8+
 - Composer
-- Laravel 9+
+- Laravel 11
 - MySQL
 - Node.js & npm (for frontend dependencies)
 
-### Setup Instructions
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/sportsmen-app.git
-   cd sportsmen-app
-   ```
-
-2. Install dependencies:
-   ```sh
-   composer install
-   npm install && npm run dev
-   ```
-
-3. Configure environment variables:
-   ```sh
-   cp .env.example .env
-   php artisan key:generate
-   ```
-   Update `.env` with your database credentials.
-
-4. Run database migrations:
-   ```sh
-   php artisan migrate --seed
-   ```
-
-5. Start the development server:
-   ```sh
-   php artisan serve
-   ```
 
 ## Usage
 
@@ -77,7 +47,3 @@ The **Sportsmen App** is a web-based application designed to manage sports-relat
 ## Contribution
 
 Feel free to fork this repository and submit pull requests for improvements!
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
