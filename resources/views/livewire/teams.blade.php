@@ -2,13 +2,11 @@
 
 <div class="container mx-auto p-6 bg-white shadow rounded">
 <div class="flex justify-end mb-4">
-@if(auth()->user()->hasAnyRole(['super_admin','admin','sub_admin']))  
-
+ 
     <button onclick="openModal()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
         + Add Team
     </button>
-    @endif
-</div>
+ </div>
 
  
 <!-- Add Team Modal -->
